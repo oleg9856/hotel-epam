@@ -15,11 +15,11 @@ import java.util.Optional;
 
 public interface ReservationService {
 
-    List<Reservation> getAllReservations(PageLimit pageLimit) throws ServiceException;
+    Optional<List<Reservation>> getAllReservations(PageLimit pageLimit) throws ServiceException;
 
     Optional<Reservation> getById(Integer id) throws ServiceException;
 
-    List<Reservation> getByUserId(Integer userId) throws ServiceException;
+    Optional<List<Reservation>> getByUserId(Integer userId) throws ServiceException;
 
     void book(User user, LocalDate arrivalDate, LocalDate departureDate, RoomClass roomClass, int personsAmount)
             throws ServiceException;

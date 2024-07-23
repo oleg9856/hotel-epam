@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface RoomService {
 
-    List<Room> getAllRooms(RoomSearch roomSearch) throws ServiceException;
+    Optional<List<Room>> getAllRooms(RoomSearch roomSearch) throws ServiceException;
     void setStatusRoom(Integer id, StatusRoom status) throws ServiceException;
     Optional<Room> getById(Integer id) throws ServiceException;
     void saveOrUpdateRoom(Room room) throws ServiceException;

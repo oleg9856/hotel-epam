@@ -65,11 +65,11 @@ public class RoomServiceImpl implements RoomService {
 
 
     @Override
-    public List<Room> getAllRooms(RoomSearch roomSearch) throws ServiceException {
+    public Optional<List<Room>> getAllRooms(RoomSearch roomSearch) throws ServiceException {
         try {
             int start = roomSearch.getItemsPerPage() * (roomSearch.getCurrentPage() - 1);
-            return roomDAO.getAllAndSorting(start, roomSearch.getItemsPerPage(),
-                    roomSearch.getOrderBy());
+            return Optional.ofNullable(roomDAO.getAllAndSorting(start, roomSearch.getItemsPerPage(),
+                    roomSearch.getOrderBy()));
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage(), e);
         }

@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface RoomClassService {
 
-    List<RoomClass> getAllRoomClasses(PageLimit roomSearch) throws ServiceException;
+    Optional<List<RoomClass>> getAllRoomClasses(PageLimit roomSearch) throws ServiceException;
     Optional<RoomClass> getByName(String name) throws ServiceException;
     void updatePrices(List<RoomClass> roomClasses) throws ServiceException;
 }

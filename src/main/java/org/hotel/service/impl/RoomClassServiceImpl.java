@@ -27,10 +27,10 @@ public class RoomClassServiceImpl implements RoomClassService {
     }
 
     @Override
-    public List<RoomClass> getAllRoomClasses(PageLimit pageLimit) throws ServiceException {
+    public Optional<List<RoomClass>> getAllRoomClasses(PageLimit pageLimit) throws ServiceException {
         try {
             int start = pageLimit.getItemsPerPage() * (pageLimit.getCurrentPage() - 1);
-            return dao.getAll(start, pageLimit.getItemsPerPage());
+            return Optional.ofNullable(dao.getAll(start, pageLimit.getItemsPerPage()));
         } catch (DAOException e) {
             throw new ServiceException();
         }

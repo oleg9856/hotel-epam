@@ -31,10 +31,10 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<Reservation> getAllReservations(PageLimit pageLimit) throws ServiceException {
+    public Optional<List<Reservation>> getAllReservations(PageLimit pageLimit) throws ServiceException {
         try {
             int start = pageLimit.getItemsPerPage() * (pageLimit.getCurrentPage() - 1);
-            return dao.getAll(start, pageLimit.getItemsPerPage());
+            return Optional.ofNullable(dao.getAll(start, pageLimit.getItemsPerPage()));
         } catch (DAOException e) {
             log.error("Error ---> {}", e.getMessage());
             throw new ServiceException(e.getMessage(), e);
@@ -51,9 +51,9 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<Reservation> getByUserId(Integer userId) throws ServiceException {
+    public Optional<List<Reservation>> getByUserId(Integer userId) throws ServiceException {
         try {
-            return dao.getByUserId(userId);
+            return Optional.ofNullable(dao.getByUserId(userId));
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage(), e);
         }
